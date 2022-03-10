@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mx-auto max-w-screen-2xl">
+        {% for taxon in taxa %}
+            <div>
+                <i class="text-italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
+            </div>
+        {% empty %}
+            <p>No taxa</p>
+        {% endfor %}
+    </div>
+{% endblock %}
