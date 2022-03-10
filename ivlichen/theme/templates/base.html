@@ -1,0 +1,31 @@
+{% load static %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block meta %}{% endblock %}
+
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="geo.placename" content="Switzerland">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+
+    {% tailwind_css %}
+
+    {% block head %} {% endblock head %}
+</head>
+<body class="w-100 h-100 bg-gray-95 subpixel-antialiased font-sans leading-normal tracking-normal">
+<main class="main-content">
+    {% block content %} {% endblock %}
+</main>
+</body>
+</html>

@@ -26,6 +26,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ivlichen',
+    'theme',
 
     'fontawesomefree',
     'widget_tweaks',
     'django_cleanup.apps.CleanupConfig',
     'tailwind',
+    'django_browser_reload'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'ivlichen.urls'
@@ -59,7 +66,7 @@ ROOT_URLCONF = 'ivlichen.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'theme/templates/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -117,9 +124,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = (BASE_DIR / 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Tailwind
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+TAILWIND_CSS_PATH = 'css/dist/styles.css'
