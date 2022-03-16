@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
 
+{% block title %}IvLichen – Liste des espèces{% endblock %}
+
 {% block content %}
+
     <div class="container mx-auto max-w-screen-2xl">
-        {% for taxon in taxa %}
-            <div>
-                <i class="text-italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
-            </div>
-        {% empty %}
-            <p>No taxa</p>
-        {% endfor %}
+        <h1 class="px-4 mt-4 text-3xl">Liste des espèces</h1>
+        <div class="mt-4 rounded">
+            {% for taxon in taxa %}
+                <div class="w-full mx-auto px-4 py-2 text-l border-amazon-30 {% cycle 'bg-white' 'bg-amazon-90' %} {% if forloop.counter0 == 0 %}rounded-t{% endif %} {% if forloop.counter == taxa.count %}rounded-b{% endif %}">
+                    <div class="w-5/6 inline-block">
+                        <i class="text-italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
+                    </div>
+                    <div class="inline-block">
+                        <a class="bg-amazon-50 text-white px-4 py-2 rounded" title="Voir la fiche de {{ taxon.name }}">Voir la fiche</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No taxa</p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

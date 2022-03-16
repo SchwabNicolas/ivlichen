@@ -19,6 +19,6 @@ class TaxaListView(ListView):
     template_name = 'taxon/list.html'
     context_object_name = 'taxa'
     model = Taxon
-    paginate_by = 10
+    paginate_by = 100
 
 
