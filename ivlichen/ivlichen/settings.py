@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'ivlichen',
     'theme',
+    'marklichen',
 
     'fontawesomefree',
     'widget_tweaks',
