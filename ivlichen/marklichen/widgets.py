@@ -5,5 +5,5 @@ class MarkdownWidget(forms.Textarea):
     pass
 
 
-class SmallMarkdownWidget(forms.TextInput):
+class SmallMarkdownWidget(MarkdownWidget, forms.TextInput):
     pass

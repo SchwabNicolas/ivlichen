@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
-from ivlichen.views import TaxonCreateView, TaxaListView, IndexView
+from ivlichen.views import TaxonCreateView, TaxaListView, IndexView, ObservationCreateView, TaxonAutocomplete
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
@@ -26,4 +26,8 @@ urlpatterns = [
 
     path('create-taxon/', TaxonCreateView.as_view(), name='create-taxon'),
     path('list-taxa/', TaxaListView.as_view(), name='list-taxa'),
+
+    path('create-observation/', ObservationCreateView.as_view(), name='create-observation'),
+
+    re_path(r'^synonym-autocomplete/$', TaxonAutocomplete.as_view(), name='taxon-autocomplete'),
 ]

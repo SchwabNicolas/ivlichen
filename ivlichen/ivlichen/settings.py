@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_cleanup.apps.CleanupConfig',
     'tailwind',
-    'django_browser_reload'
+    'django_browser_reload',
+    'dal',
+    'dal_select2',
 ]
 
 MIDDLEWARE = [

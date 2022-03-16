@@ -38,10 +38,14 @@ class Taxon(Model):
     shape = models.CharField(choices=SHAPE, max_length=25, default='crust')
     remarks = MarkdownField(max_length=1000, null=True, blank=True, default='')
 
+    def __str__(self):
+        return self.name
+
 
 class Image(Model):
     image = models.ImageField('taximg/')
-    legend = models.CharField(max_length=125, null=True, default=None)
+    legend = models.CharField(max_length=125, null=True, blank=True)
+    author = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Observation(Model):
@@ -55,9 +59,9 @@ class Observation(Model):
     ]
 
     taxon = models.ForeignKey('Taxon', models.CASCADE)
-    images = models.ManyToManyField('Image')
     date = models.DateField(default=timezone.now)
-    locality = models.CharField(max_length=125, null=True, blank=True, default=None)
-    identifier = models.CharField(max_length=50, null=True, blank=True)
+    locality = models.CharField(max_length=125, null=True, blank=True, default="")
     substrate = models.CharField(choices=SUBSTRATE, max_length=5, default='epi')
-    fine_substrate = MarkdownField(max_length=150, null=True, blank=True)
+    host = models.CharField(max_length=150, null=True, blank=True)
+    outside_scope = models.BooleanField(default=False)
+    images = models.ManyToManyField('Image')
