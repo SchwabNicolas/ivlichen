@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}IvLichen – Fiche de {{ taxon.name }}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid bg-amazon-50">
+        <h1 class="text-size-6 px-3">
+            <i class="font-weight-bold">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
+        </h1>
+    </div>
+    <div class="container mx-auto max-w-screen-2xl">
+
+    </div>
+{% endblock %}

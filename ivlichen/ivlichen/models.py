@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import Model
+from django.urls import reverse
 from django.utils import timezone
+from slugify import slugify
 
 from marklichen.models import MarkdownField
 
@@ -37,6 +39,14 @@ class Taxon(Model):
     trophic_mode = models.CharField(choices=TROPHIC_MODE, max_length=25, default='lich')
     shape = models.CharField(choices=SHAPE, max_length=25, default='crust')
     remarks = MarkdownField(max_length=1000, null=True, blank=True, default='')
+    slug = models.SlugField(blank=True, unique=True, verbose_name="Slug")
+
+    def get_absolute_url(self):
+        return reverse('taxonomy:taxon-detail', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(f"{self.name}")
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -44,8 +54,6 @@ class Taxon(Model):
 
 class Image(Model):
     image = models.ImageField('taximg/')
-    legend = models.CharField(max_length=125, null=True, blank=True)
-    author = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Observation(Model):

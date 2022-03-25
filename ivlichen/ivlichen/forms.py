@@ -15,8 +15,6 @@ class TaxonCreateUpdateForm(ModelForm):
 
 
 class ObservationCreateUpdateForm(ModelForm):
-    image = ImageField(required=False)
-
     class Meta:
         model = Observation
         fields = '__all__'
