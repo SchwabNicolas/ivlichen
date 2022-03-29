@@ -1,6 +1,6 @@
 from dal import autocomplete
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
 from ivlichen.forms import TaxonCreateUpdateForm, ObservationCreateUpdateForm
 from ivlichen.models import Taxon, Image
@@ -13,6 +13,14 @@ class IndexView(TemplateView):
 class TaxonCreateView(CreateView):
     template_name = 'taxon/create.html'
     form_class = TaxonCreateUpdateForm
+    success_url = reverse_lazy('index')
+
+
+class TaxonUpdateView(UpdateView):
+    template_name = 'taxon/update.html'
+    form_class = TaxonCreateUpdateForm
+    context_object_name = 'taxon'
+    model = Taxon
     success_url = reverse_lazy('index')
 
 

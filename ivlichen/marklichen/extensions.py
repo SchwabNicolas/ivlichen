@@ -18,8 +18,6 @@ class TaxonInlineProcessor(DoubleTagInlineProcessor):
 
         if tax.exists():
             tax = tax.first()
-
-        if tax is not None:
             taxon.set('title', f'Voir la fiche de {taxon.text}')
             taxon.set('href', tax.get_absolute_url())
             taxon.set('class', 'text-amazon-50 italic')

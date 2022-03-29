@@ -42,7 +42,7 @@ class Taxon(Model):
     slug = models.SlugField(blank=True, unique=True, verbose_name="Slug")
 
     def get_absolute_url(self):
-        return reverse('taxonomy:taxon-detail', kwargs={'slug': self.slug})
+        return reverse('taxon-detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify(f"{self.name}")

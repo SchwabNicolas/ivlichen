@@ -12,7 +12,7 @@
                         <i class="text-italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
                     </div>
                     <div class="inline-block">
-                        <a class="bg-amazon-50 text-white px-4 py-2 rounded" title="Voir la fiche de {{ taxon.name }}">Voir la fiche</a>
+                        <a href="{% url 'taxon-detail' slug=taxon.slug %}" class="bg-amazon-50 text-white px-4 py-2 rounded" title="Voir la fiche de {{ taxon.name }}">Voir la fiche</a>
                     </div>
                 </div>
             {% empty %}

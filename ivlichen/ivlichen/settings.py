@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'fontawesomefree',
     'widget_tweaks',
+    'sorl.thumbnail',
     'django_cleanup.apps.CleanupConfig',
     'tailwind',
     'django_browser_reload',
@@ -69,8 +70,7 @@ ROOT_URLCONF = 'ivlichen.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'theme/templates/templates']
-        ,
+        'DIRS': [BASE_DIR / 'theme/templates/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

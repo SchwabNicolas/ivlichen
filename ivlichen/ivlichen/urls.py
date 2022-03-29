@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from ivlichen.views import TaxonCreateView, TaxaListView, IndexView, ObservationCreateView, TaxonAutocomplete, TaxonDetailView
+from ivlichen.views import TaxonCreateView, TaxaListView, IndexView, ObservationCreateView, TaxonAutocomplete, TaxonDetailView, TaxonUpdateView
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
@@ -26,6 +26,7 @@ urlpatterns = [
 
     path('create-taxon/', TaxonCreateView.as_view(), name='create-taxon'),
     path('taxon-detail/<slug:slug>', TaxonDetailView.as_view(), name='taxon-detail'),
+    path('taxon-update/<slug:slug>', TaxonUpdateView.as_view(), name='taxon-update'),
     path('list-taxa/', TaxaListView.as_view(), name='list-taxa'),
 
     path('create-observation/', ObservationCreateView.as_view(), name='create-observation'),
