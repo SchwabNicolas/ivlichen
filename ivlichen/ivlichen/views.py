@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
 from ivlichen.forms import TaxonCreateUpdateForm, ObservationCreateUpdateForm
-from ivlichen.models import Taxon, Image
+from ivlichen.models import Taxon, Image, Observation
 
 
 class IndexView(TemplateView):
@@ -35,6 +35,11 @@ class TaxonDetailView(DetailView):
     template_name = 'taxon/detail.html'
     context_object_name = 'taxon'
     model = Taxon
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['taxon'] = self.get_object()
+        return context
 
 
 class ObservationCreateView(CreateView):

@@ -13,16 +13,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="geo.placename" content="Switzerland">
 
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <script src="{% static '/js/map.js' %}"></script>
 
     <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
     <link href="{% static 'css/dist/dropzone.css' %}" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+
+    <style>
+      #map {height: 400px}
+    </style>
 
     {% tailwind_css %}
 

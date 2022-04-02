@@ -129,6 +129,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = (BASE_DIR / 'media')
@@ -140,5 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Tailwind
 TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = r"E:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 TAILWIND_CSS_PATH = 'css/dist/styles.css'
