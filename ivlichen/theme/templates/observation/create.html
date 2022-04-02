@@ -6,8 +6,7 @@
 
 {% block content %}
     <div class="container mx-auto max-w-screen-2xl">
-        <form id="image-dropzone" class="dropzone" method="post" enctype="multipart/form-data"
-              action="{% url 'create-observation' %}">
+        <form id="image-dropzone" class="dropzone" method="post" enctype="multipart/form-data" action="{% url 'create-observation' %}">
             {% csrf_token %}
             {% if form.non_field_errors %}
                 <div class="container rounded-md bg-white p-2 mt-4">
@@ -15,13 +14,17 @@
                 </div>
             {% endif %}
 
+            <div class="">
+                {{ form.errors }}
+            </div>
+
             <h1 class="text-3xl font-bold px-2 py-1">Ajouter une observation</h1>
             <fieldset id="data-fs" class="container rounded-md bg-white p-2 mt-4">
                 <h1 class="text-xl font-bold px-2 py-1">Données</h1>
                 <div class="flex flex-wrap -mx-3 px-2 py-1">
                     <div class="w-full px-3 py-1 mb-2 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2"
-                               for="{{ form.taxon.id_for_label }}">
+                                for="{{ form.taxon.id_for_label }}">
                             Taxon
                         </label>
                         {{ form.taxon|add_class:"appearance-none block w-full text-gray-30 border-gray-50 border-2 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-transparent focus:ring-amazon-50 focus:ring-2 focus:bg-white" }}
@@ -30,16 +33,14 @@
 
                 <div class="flex flex-wrap -mx-3 px-2 py-1">
                     <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2"
-                               for="{{ form.locality.id_for_label }}">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.locality.id_for_label }}">
                             Localité
                         </label>
                         {{ form.locality|add_class:"form-input w-full" }}
                     </div>
 
                     <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2"
-                               for="{{ form.date.id_for_label }}">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.date.id_for_label }}">
                             Date
                         </label>
                         {{ form.date|add_class:"form-input w-full" }}
@@ -48,16 +49,30 @@
 
                 <div class="flex flex-wrap -mx-3 px-2 py-1">
                     <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2"
-                               for="{{ form.substrate.id_for_label }}">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.latitude.id_for_label }}">
+                            Latitude
+                        </label>
+                        {{ form.latitude|add_class:"form-input w-full" }}
+                    </div>
+
+                    <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.longitude.id_for_label }}">
+                            Longitude
+                        </label>
+                        {{ form.longitude|add_class:"form-input w-full" }}
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 px-2 py-1">
+                    <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.substrate.id_for_label }}">
                             Substrat
                         </label>
                         {{ form.substrate|add_class:"form-input w-full" }}
                     </div>
 
                     <div class="w-full md:w-1/2 px-3 py-1 mb-2 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2"
-                               for="{{ form.host.id_for_label }}">
+                        <label class="block uppercase tracking-wide text-gray-25 text-xs font-bold mb-2" for="{{ form.host.id_for_label }}">
                             Hôte
                         </label>
                         {{ form.host|add_class:"form-input w-full" }}
@@ -80,8 +95,7 @@
             <div class="md:flex md:items-center mt-4 mb-8">
                 <div class="md:w-1/3"></div>
                 <div class="md:w-1/3">
-                    <button class="mx-auto flex bg-amazon-50 hover:bg-amazon-60 focus:shadow-outline focus:outline-none text-white font-bold py-4 px-8 rounded"
-                            type="submit">
+                    <button class="mx-auto flex bg-amazon-50 hover:bg-amazon-60 focus:shadow-outline focus:outline-none text-white font-bold py-4 px-8 rounded" type="submit">
                         Créer
                     </button>
                 </div>

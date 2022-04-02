@@ -73,3 +73,5 @@ class Observation(Model):
     host = models.CharField(max_length=150, null=True, blank=True)
     outside_scope = models.BooleanField(default=False)
     images = models.ManyToManyField('Image')
+    latitude = models.DecimalField(decimal_places=10, max_digits=12, null=True, blank=True)
+    longitude = models.DecimalField(decimal_places=10, max_digits=12, null=True, blank=True)

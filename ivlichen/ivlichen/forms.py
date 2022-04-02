@@ -1,8 +1,7 @@
 from dal import autocomplete
-from django.forms import ModelForm, ImageField
+from django.forms import ModelForm
 
 from ivlichen.models import Taxon, Observation
-from marklichen.widgets import SmallMarkdownWidget
 
 
 class TaxonCreateUpdateForm(ModelForm):
