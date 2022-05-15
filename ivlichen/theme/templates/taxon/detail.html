@@ -5,6 +5,7 @@
 {% block title %}IvLichen – Fiche de {{ taxon.name }}{% endblock %}
 
 {% block content %}
+    {{ coordinates|json_script:"coordinates-data" }}
     <div class="bg-amazon-10 min-w-max pt-8 pb-4">
         <div class="container mx-32 text-white">
             <div>{{ taxon.get_division_display }} / {{ taxon.family }}</div>
@@ -37,7 +38,7 @@
                 <h2 class="text-xl mb-1 text-gray-30">Données écologiques</h2>
                 <p>
                     <b>Statut trophique</b> : {{ taxon.get_trophic_mode_display }}<br>
-                    <b>Forme du thalle</b> : {{ taxon.get_shape_display }}
+                    <b>Forme du thalle</b> : {{ taxon.get_shape_display }}<br>
                 </p>
             </div>
 

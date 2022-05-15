@@ -36,9 +36,21 @@ class TaxonDetailView(DetailView):
     context_object_name = 'taxon'
     model = Taxon
 
+    def get_observations(self):
+        return Observation.objects.filter(taxon=self.get_object())
+
+    def get_list_coordinates(self):
+        coordinates = []
+        for observation in self.get_observations():
+            if observation.latitude and observation.longitude is not None:
+                coordinates.append([observation.date, observation.latitude, observation.longitude])
+        return coordinates
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['taxon'] = self.get_object()
+        context['coordinates'] = self.get_list_coordinates()
+        context['observations'] = self.get_observations()
         return context
 
 
