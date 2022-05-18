@@ -22,7 +22,6 @@
 
         <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
             <h2 class="text-xl mb-1 text-gray-30">Illustrations</h2>
-            <img src="{% static /media/bg.jpg %}">
             {% for observation in observations %}
                     {% for image in observation.images.all %}
                         <img src="{{ image.image.url }}">

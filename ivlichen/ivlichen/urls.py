@@ -19,7 +19,7 @@ from django.urls import path, include, re_path
 
 from ivlichen.views import TaxonCreateView, TaxaListView, IndexView, ObservationCreateView, TaxonAutocomplete, TaxonDetailView, TaxonUpdateView
 
-from ivlichen.ivlichen import settings
+from ivlichen import settings
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
