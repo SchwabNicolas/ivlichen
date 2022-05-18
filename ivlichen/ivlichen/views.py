@@ -62,7 +62,7 @@ class ObservationCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         form = ObservationCreateUpdateForm(request.POST, request.FILES)
         if form.is_valid():
-            obs = form.save()
+            obs = form.save(*args, **kwargs)
             for file in request.FILES:
                 obs.images.add(Image.objects.create(image=request.FILES[file]))
             return super().post(request, args, kwargs)
