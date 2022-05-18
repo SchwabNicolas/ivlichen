@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 
 from ivlichen.views import TaxonCreateView, TaxaListView, IndexView, ObservationCreateView, TaxonAutocomplete, TaxonDetailView, TaxonUpdateView
+
+from ivlichen.ivlichen import settings
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
@@ -32,4 +35,4 @@ urlpatterns = [
     path('create-observation/', ObservationCreateView.as_view(), name='create-observation'),
 
     re_path(r'^synonym-autocomplete/$', TaxonAutocomplete.as_view(), name='taxon-autocomplete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
