@@ -1,48 +1,54 @@
 {% extends 'base.html' %}
-{% load thumbnail %}
 {% load utils %}
+{% load thumbnail %}
 
 {% block title %}IvLichen – Fiche de {{ taxon.name }}{% endblock %}
 
 {% block content %}
-{{ coordinates|json_script:"coordinates-data" }}
-<div class="bg-amazon-10 min-w-max pt-8 pb-4">
-    <div class="container mx-32 text-white">
-        <div>{{ taxon.get_division_display }} / {{ taxon.family }}</div>
-        <h1 class="font-display text-3xl"><i class="font-weight-bold italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})</h1>
-    </div>
-</div>
-
-<div class="mt-8 pb-2 py-4 min-w-max mx-32">
-    <div class="flex justify-content-center">
-        <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
-            <h2 class="text-xl mb-1 text-gray-30">Remarques</h2>
-            <p class="justify">{{ taxon.remarks|markdown|safe }}</p>
+    {{ coordinates|json_script:"coordinates-data" }}
+    <div class="bg-amazon-10 min-w-max pt-8 pb-4">
+        <div class="container mx-32 text-white">
+            <div>{{ taxon.get_division_display }} / {{ taxon.family }}</div>
+            <h1 class="font-display text-3xl">
+                <i class="font-weight-bold italic">{{ taxon.name }}</i> {{ taxon.authors }} ({{ taxon.publication_year }})
+            </h1>
         </div>
+    </div>
 
-        <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
-            <h2 class="text-xl mb-1 text-gray-30">Illustrations</h2>
-            {% for observation in observations %}
+    <div class="mt-8 pb-2 py-4 min-w-max mx-32">
+        <div class="flex justify-content-center">
+            <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
+                <h2 class="text-xl mb-1 text-gray-30">Remarques</h2>
+                <p class="justify">{{ taxon.remarks|markdown|safe }}</p>
+                <h2 class="text-xl mb-1 text-gray-30">Données écologiques</h2>
+                <p>
+                    <b>Statut trophique</b> : {{ taxon.get_trophic_mode_display }}<br>
+                    <b>Forme du thalle</b> : {{ taxon.get_shape_display }}<br>
+                </p>
+            </div>
+
+            <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
+                <h2 class="text-xl mb-1 text-gray-30">Illustrations</h2>
+                {% for observation in observations %}
                     {% for image in observation.images.all %}
-                        <img src="{{ image.image.url }}">
+                        <img src="{{ image.image.url }}" alt="" class="w-2/3 mx-auto">
                     {% endfor %}
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="mt-8 flex justify-content-center">
-        <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
-            <h2 class="text-xl mb-1 text-gray-30">Données écologiques</h2>
-            <p>
-                <b>Statut trophique</b> : {{ taxon.get_trophic_mode_display }}<br>
-                <b>Forme du thalle</b> : {{ taxon.get_shape_display }}<br>
-            </p>
-        </div>
+        <div class="mt-8 flex justify-content-center">
+            <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
+                <h2 class="text-xl mb-1 text-gray-30">Observations</h2>
+                {% for observation in observations %}
+                    <div>{{ observation.locality }}, le {{ observation.date }}</div>
 
-        <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
-            <h2 class="text-xl mb-1 text-gray-30">Observations</h2>
-            <div id="map">
+                {% endfor %}
+            </div>
+
+            <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
+                <h2 class="text-xl mb-1 text-gray-30">Carte</h2>
+                <div id="map"></div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
