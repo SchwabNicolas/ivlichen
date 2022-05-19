@@ -24,13 +24,13 @@ from ivlichen import settings
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
-    path('', TaxaListView.as_view(), name='index'),
-    path('index/', TaxaListView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='index'),
+    path('index/', IndexView.as_view(), name='index'),
 
     path('create-taxon/', TaxonCreateView.as_view(), name='create-taxon'),
     path('taxon-detail/<slug:slug>', TaxonDetailView.as_view(), name='taxon-detail'),
     path('taxon-update/<slug:slug>', TaxonUpdateView.as_view(), name='taxon-update'),
-    # path('list-taxa/', TaxaListView.as_view(), name='list-taxa'),
+    path('list-taxa/', TaxaListView.as_view(), name='list-taxa'),
 
     path('create-observation/', ObservationCreateView.as_view(), name='create-observation'),
 

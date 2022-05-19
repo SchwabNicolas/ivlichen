@@ -1,3 +1,5 @@
+from random import sample
+
 from dal import autocomplete
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView

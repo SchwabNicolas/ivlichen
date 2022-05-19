@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load utils %}
 {% load thumbnail %}
 
@@ -15,34 +16,36 @@
         </div>
     </div>
 
-    <div class="mt-8 pb-2 py-4 min-w-max mx-32">
+    <div class="mt-8 pb-2 py-4 mx-32">
         <div class="flex justify-content-center">
             <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
-                <h2 class="text-xl mb-1 text-gray-30">Remarques</h2>
-                <p class="justify">{{ taxon.remarks|markdown|safe }}</p>
-                <h2 class="text-xl mb-1 text-gray-30">Données écologiques</h2>
+                <h2 class="text-xl mb-1 mt-2 text-gray-30">Données écologiques</h2>
                 <p>
                     <b>Statut trophique</b> : {{ taxon.get_trophic_mode_display }}<br>
                     <b>Forme du thalle</b> : {{ taxon.get_shape_display }}<br>
                 </p>
+
+                <h2 class="text-xl mb-1 text-gray-30">Remarques</h2>
+                <p class="justify">{{ taxon.remarks|markdown|safe }}</p>
             </div>
 
             <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">
                 <h2 class="text-xl mb-1 text-gray-30">Illustrations</h2>
                 {% for observation in observations %}
-                    {% for image in observation.images.all %}
+                    {% with observation.images.all.0 as image %}
                         <img src="{{ image.image.url }}" alt="" class="w-2/3 mx-auto">
-                    {% endfor %}
+                    {% endwith %}
                 {% endfor %}
             </div>
         </div>
         <div class="mt-8 flex justify-content-center">
             <div class="container rounded-md bg-white p-2 w-1/2 shadow-md">
                 <h2 class="text-xl mb-1 text-gray-30">Observations</h2>
-                {% for observation in observations %}
-                    <div>{{ observation.locality }}, le {{ observation.date }}</div>
-
-                {% endfor %}
+                {% language 'fr' %}
+                    {% for observation in observations %}
+                        <div>{{ observation.locality }}, le {{ observation.date|date:'d F Y' }}</div>
+                    {% endfor %}
+                {% endlanguage %}
             </div>
 
             <div class="container rounded-md bg-white ml-4 p-2 w-1/2 shadow-md">

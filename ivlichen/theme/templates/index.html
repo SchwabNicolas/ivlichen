@@ -3,14 +3,24 @@
 {% block title %}IvLichen – Index{% endblock %}
 
 {% block content %}
+
     <div class="container mx-auto max-w-screen-2xl">
         <h1 class="text-3xl text-gray-20 mt-4">Contribuer</h1>
-        <div class="columns-2 gap-6">
+        <div class="columns-3 gap-6">
             <div>
-                <div class="text-center text-amazon-50"><a href="{% url 'create-taxon' %}" title="Ajouter une espèce"><i class="fas fa-plus"></i> Ajouter une espèce</a></div>
+                <div class="text-center text-amazon-50">
+                    <a href="{% url 'list-taxa' %}" title="Liste des espèces"><i class="fa-solid fa-list"></i> Liste des espèces</a>
+                </div>
             </div>
             <div>
-                <div class="text-center text-amazon-50"><a href="{% url 'create-observation' %}"><i class="fa-solid fa-eye"></i> Ajouter une observation</a></div>
+                <div class="text-center text-amazon-50">
+                    <a href="{% url 'create-taxon' %}" title="Ajouter une espèce"><i class="fas fa-plus"></i> Ajouter une espèce</a>
+                </div>
+            </div>
+            <div>
+                <div class="text-center text-amazon-50">
+                    <a href="{% url 'create-observation' %}"><i class="fa-solid fa-eye"></i> Ajouter une observation</a>
+                </div>
             </div>
         </div>
     </div>
